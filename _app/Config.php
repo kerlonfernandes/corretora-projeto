@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 //MYSQL configurations 
 define('MYSQL_CONFIG', [
     'host' => 'localhost',
-    'database' => 'gestao_financeira',
+    'database' => 'corretora_db',
     'username' => 'root',
     'password' => '',
 ]);
