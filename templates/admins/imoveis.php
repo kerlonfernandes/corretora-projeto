@@ -1,18 +1,20 @@
-<main class="card p-3 m-3" style="height: 1000px;">
+<main class="painel card p-3 m-3" style="height: 1000px;">
     <div class="container text-center mb-2">
         <div class="row">
-            <div class="col btn card p-3">
-            <i class="fa-solid fa-house-flag"></i>
-               Cadastrar novo imóvel
-       
+            <div class="col btn card p-3" type="button" data-bs-toggle="modal" data-bs-target="#cadastrar-imovel">
+                <i class="fa-solid fa-house-flag"></i>
+                Cadastrar novo imóvel
+
             </div>
             <div class="col card p-3">
-            <i class="fa-solid fa-building"></i>
-                Imóveis Cadastrados 
+                <i class="fa-solid fa-building"></i>
+                Imóveis Cadastrados
+                <div class="h3 imoveis-qtd-div">0</div>
+            </div>
+            <div class="col card p-3">
+            <i class="fa-solid fa-box-archive"></i>
+                Arquivados
                 <div class="h3">0</div>
-            </div>
-            <div class="col card p-3">
-                Column
             </div>
         </div>
     </div>
@@ -21,40 +23,54 @@
         <div class="row">
 
             <div class="col-bg card">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nome do Imóvel</th>
-                            <th scope="col">Descrição Básica</th>
-                            <th scope="col">Localidade</th>
-                            <th scope="col">Proprietário</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="text-start">
-                                <div class="btn btn-primary"><i class="fa-solid fa-pen"></i></div>
-                                <div class="btn btn-danger"><i class="fa-solid fa-trash"></i></div>
+
+
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nome do Imóvel</th>
+                                <th scope="col">Descrição Básica</th>
+                                <th scope="col">Localidade</th>
+                                <th scope="col">Proprietário</th>
+                                <th scope="col">Cadastrado em</th>
+                                <div class="d-flex justify-content-center mt-5">
+                                    <div class="spinner page-preload"></div>
                                 </div>
-                            </td>
-                            <th scope="row">1</th>
-                            <td>Exemplo Nome</td>
-                            <td>Descrição</td>
-                            <td>Localidade</td>
-                            <td>Proprietário</td>
 
+                            </tr>
+                        </thead>
+                        <tbody class="imoveis">
 
-                        </tr>
-              
+                        </tbody>
 
-                    </tbody>
+                    </table>
 
-                </table>
+                </div>
+
             </div>
 
         </div>
+
+    </div>
+    <div class="mt-4 message-info">
+        <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100 mt-5">
+            <div class="toast-container p-3" id="toastPlacement">
+                <div class="toast">
+                    <div class="toast-header">
+                        <img src="..." class="rounded me-2" alt="...">
+                        <strong class="me-auto">Sistema info.</strong>
+                        <small>Informação</small>
+                    </div>
+                    <div class="toast-body">
+                        Clique na seta ao topo para acessar as outras áreas do painel
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
+

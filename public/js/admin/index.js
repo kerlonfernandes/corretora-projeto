@@ -1,6 +1,5 @@
 
 const admin_base_url = `../${base_url}/admin`
-console.log(admin_base_url)
 
 document.addEventListener('DOMContentLoaded', function () {
     let successMessageElement = document.getElementById("success-message");
@@ -56,4 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     authAdmin();
+
+
 });

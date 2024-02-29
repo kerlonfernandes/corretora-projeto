@@ -15,7 +15,10 @@
 
 
     <div class="container text-center" id="wrapper">
-    <?php require_once("./templates/home/HomeHeader.php") ?>
+    <?php 
+        require_once("./templates/home/HomeHeader.php");
+      
+    ?>
 
         <div class="row">
 

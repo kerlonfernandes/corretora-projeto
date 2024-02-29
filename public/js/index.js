@@ -68,5 +68,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     popOver();
 
+    $(document).ready(function(){
+        var datalist = $('#datalistOptions');
     
+        function buscarSugestoes(nomeCidade) {
+            datalist.empty();
+    
+            $.ajax({
+                url: `https://servicodados.ibge.gov.br/api/v1/localidades/municipios?nome=${nomeCidade}`,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    data.forEach(function(cidade){
+                        datalist.append(`<option value="${cidade.nome}, ${cidade.microrregiao.mesorregiao.UF.sigla}">`);
+                    });
+                }
+            });
+        }
+    
+        // Adicionar um evento de input ao campo de texto
+        $('#cidadeInput').on('input', function() {
+            var nomeCidade = $(this).val();
+            buscarSugestoes(nomeCidade);
+        });
+    });
+
+
 });
