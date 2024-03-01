@@ -1,5 +1,9 @@
 //urls configs
-const base_url = "../projeto-corretora"
+// const base_url = "../projeto-corretora"
+const base_url = "https://0832-45-7-167-152.ngrok-free.app/projeto-corretora"
+
+// https://0832-45-7-167-152.ngrok-free.app/projeto-corretora/
+
 const views_url = `${base_url}/views`
 
 class Helpers {
@@ -325,5 +329,22 @@ class Validators {
             console.error('Elemento não encontrado. Verifique se há um elemento com o ID "password-strength-bar".');
         }
     }
+
+
+static formatarMoeda(id) {
+    var elemento = document.getElementById(id);
+    var valor = elemento.value;
+    
+    valor = valor + '';
+    valor = parseInt(valor.replace(/[\D]+/g,''));
+    valor = valor + '';
+    valor = valor.replace(/([0-9]{2})$/g, ",$1");
+  
+    if (valor.length > 6) {
+      valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+    }
+  
+    elemento.value = valor;
+  }
 
 }

@@ -11,7 +11,7 @@
                         <label for="proprietario">Proprietário do imóvel</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" class="form-control" id="proprietario" name="proprietario" placeholder="Nome do Proprietário">
+                            <input type="text" class="form-control" id="proprietario" name="proprietario" placeholder="Nome do Proprietário" require="">
                         </div>
                         <div class="mb-3">
                             <label for="imagens-imovel" class="form-label">Adicione as imagens do imóvel:</label>
@@ -32,24 +32,40 @@
                         </div>
 
                         <label for="titulo-imovel" class="col-form-label">Título do imóvel</label>
-                        <input type="text" class="form-control" id="titulo-imovel" name="titulo-imovel">
+                        <input type="text" class="form-control" id="titulo-imovel" name="titulo-imovel" require="">
                     </div>
                     <div class="mb-3">
                         <label for="descricao-curta" class="col-form-label">Dê uma breve descrição do imóvel</label>
-                        <textarea type="text" class="form-control" id="descricao-curta" name="short-description"></textarea>
+                        <textarea type="text" class="form-control" id="descricao-curta" name="short-description" require=""></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="editor">Escreva as características do imóvel</label>
                         <div id="editor" name="caracteristicas">
+                            <h2><strong>O imóvel contém:</strong></h2>
+                            <p><br></p>
+                            <ol>
+                                <li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Área Total:</strong> [Inserir área total em metros quadrados]</li>
+                                <li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Quartos:</strong> [Número de quartos]</li>
+                                <li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Banheiros:</strong> [Número de banheiros]</li>
+                                <li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Vagas de Garagem:</strong> [Número de vagas]</li>
+                                <li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Ano de Construção:</strong> [Ano de construção]</li>
+                                <li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Estado de Conservação:</strong> [Descrever se está novo, renovado, etc.]</li>
+                                <li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Tipo de Cozinha:</strong> [Cozinha aberta, fechada, estilo americano, etc.]</li>
+                                <li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Área Externa:</strong> [Jardim, varanda, terraço, etc.]</li>
+                            </ol>
+                            <p><br></p>
+                            <p><br></p>
+                            <h2 class="h2">Você pode apagar o texto acima.</h2>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="imovel-price" class="col-form-label">Preço do Imóvel:</label>
-                        <input type="text" class="form-control" id="imovel-price" name="price" pattern="[0-9]+(\.[0-9]+)?" title="Apenas números são permitidos">
+                        <input type="text" class="form-control" id="imovel-price" name="price" pattern="[0-9]+(\.[0-9]+)?" title="Apenas números são permitidos" require="">
+
                     </div>
                     <div class="mb-3">
                         <label for="cidadeInput" class="form-label">Digite o nome da cidade:</label>
-                        <input class="form-control" list="datalistOptions" id="cidadeInput" name="localizacao" placeholder="Ex:.. São Mateus, ES">
+                        <input class="form-control" list="datalistOptions" id="cidadeInput" name="localizacao" placeholder="Ex:.. São Mateus, ES" require="">
                         <datalist id="datalistOptions"></datalist>
                     </div>
 

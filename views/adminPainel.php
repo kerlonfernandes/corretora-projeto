@@ -63,13 +63,14 @@
             <!-- Use any element to open the sidenav -->
             <span class="open-sidebar"><i class="fa-solid fa-arrow-right m-3"></i></span>
 
-
+            
             <div id="main">
+            <span class="h3" style="margin-left: 20px;" >Olá, <?= $_SESSION['admin'] ?>!</span>
                 <?php if (isset($_GET['area'])) {
                     $areaAdmin = ["imoveis", "users", "reports", "system-tools"];
 
                     if (in_array($_GET['area'], $areaAdmin)) {
-
+                        
                         require("./templates/admins/{$_GET['area']}.php");
                     } else {
                 ?>
@@ -95,6 +96,8 @@
         <script src="<?= SITE ?>/public/js/jquery.min.js?id=<?= uniqid() ?>"></script>
         <script src="<?= SITE ?>/public/js/bootstrap.bundle.min.js.js?id=<?= uniqid() ?>"></script>
         <script src="<?= SITE ?>/public/js/scripts.js?id=<?= uniqid() ?>"></script>
+        <script src="<?= SITE ?>/public/js/styles.js?id=<?= uniqid() ?>"></script>
+
         <script src="<?= SITE ?>/public/js/admin/painel.js?id=<?= uniqid() ?>"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>

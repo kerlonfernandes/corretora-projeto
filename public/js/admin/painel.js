@@ -1,29 +1,33 @@
 var quill;
 
 function hideOverlay() {
-    $("#overlay").fadeOut('slow', function() {
+    $("#overlay").fadeOut('slow', function () {
         $("#loader-container").hide();
         $("#custom-loader").hide();
-    
-      });
-    }
+
+    });
+}
 
 document.addEventListener('DOMContentLoaded', function () {
 
     function LoadImoveisTable() {
+
         Helpers.ajax({
             method: 'GET',
-            url: `../../views/admins/imoves-list.php`,
+            url: `${base_url}/views/admins/imoves-list.php`,
             dataType: 'html',
 
             beforeSend: function (xhr) {
-                console.log("enviando...")
+               
             },
             success: function (data) {
                 Dom.setHtml(".imoveis", data)
                 document.querySelector(".spinner").style.display = "none"
-                
+
                 document.querySelector(".imoveis-qtd-div").innerHTML = document.querySelector(".imoveis-qtd").value
+                document.querySelector(".imoveis-arquivados-qtd-div").innerHTML = document.querySelector(".imoveis-arquivados-qtd").value
+
+
             },
             error: function (error) { }
         })
@@ -47,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById("mySidenav").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
             let painel = document.querySelector(".painel");
-        
+
             if (painel) {
                 painel.style.right = "125px";
             }
@@ -58,17 +62,17 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById("main").style.marginLeft = "0";
             document.querySelector(".painel").style.marginRight = "0";
             let painel = document.querySelector(".painel");
-        
+
             if (painel) {
                 painel.style.right = "0px";
             }
         }
         if (larguraTela <= 767) {
-            console.log("mobile")
+            
         } else {
-            
+
             openNav()
-            
+
 
         }
         document.querySelector(".open-sidebar").addEventListener("click", () => {
@@ -104,7 +108,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 buscarSugestoes(nomeCidade);
             });
         });
-
+        $(document).on("click", ".mostrar-desarquivados", () => {
+            LoadImoveisTable();
+        })
         $(document).ready(function () {
             $('#imagens-imovel').change(function () {
                 $('.carousel-inner').empty();
@@ -124,6 +130,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 $('#carouselExample').carousel();
             });
         });
+
+        document.querySelector("#imovel-price").addEventListener("input", function (event) {
+            var elemento = document.getElementById("imovel-price");
+            var valor = elemento.value;
+
+            // Remova qualquer caractere não numérico
+            valor = valor.replace(/[^\d]/g, '');
+
+            // Adicione a vírgula para separar os centavos
+            valor = valor.replace(/(\d{2})$/g, ",$1");
+
+            // Adicione o ponto para milhares, milhões e bilhões
+            if (valor.length > 5) {
+                valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+            }
+
+            elemento.value = valor;
+        });
+
+
     }
 
     function sendImovelCadastroForm() {
@@ -144,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     images.push(fileInput.files[i].name);
                 }
             }
+
             
             let data = {
                 "imovel_name": titulo_imovel,
@@ -157,28 +184,36 @@ document.addEventListener('DOMContentLoaded', function () {
             // quill.root.innerHTML = ""
 
             $.ajax({
-                url: 'https://localhost/projeto-corretora/cadastra/imovel', // Substitua pelo URL correto
+                url: `${base_url}/cadastra/imovel`, // Substitua pelo URL correto
                 type: 'POST',
-                data: data ,
+                data: data,
                 success: function (response) {
                     response = JSON.parse(response)
-                    
-                    if(response.status == "success") {
-                        formData.imovel_id = response.imovel_id
+                    if (response.status == "success") {
+                        showToast("success", response.message)
                         $.ajax({
-                            url: 'https://localhost/projeto-corretora/processa/imovel-imagens', 
+                            url: `${base_url}/processa/imovel-imagens?id=${response.imovel_id}`,
                             type: 'POST',
                             data: formData,
                             contentType: false,
                             processData: false,
                             success: function (response) {
-                                console.log(formData)
-                                console.log(response)
+                                response = JSON.parse(response)
+                                if (response.status == "success") {
+                                    showToast("success", response.message)
+                                }
+                                else {
+                                    showToast("error", response.message)
+                                }
+                                LoadImoveisTable()
                             },
                             error: function (error) {
                                 console.error('Erro na requisição Ajax:', error);
                             }
                         });
+                    }
+                    else {
+                        showToast("error", response.message)
                     }
                 },
                 error: function (error) {
@@ -189,8 +224,112 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
     }
+    function arquivarImovel() {
+        $(document).on("click", ".arquivar", (e) => {
+            let id = e.target.dataset.id;
+            $.ajax({
+                url: `${base_url}/arquivar/imovel`, // Substitua pelo URL correto
+                type: 'POST',
+                data: {
+                    "id": id
+                },
+                success: function (response) {
+                    response = JSON.parse(response)
+                    if (response.status == "success") {
+                        showToast("success", response.message)
+                    }
+                    else {
+                        showToast("error", response.message)
+                    }
+                    LoadImoveisTable()
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        })
 
+    }
+    function desarquivarImovel() {
+        $(document).on("click", ".desarquivar", (e) => {
+            let id = e.target.dataset.id;
+            $.ajax({
+                url: `${base_url}/desarquivar/imovel`, // Substitua pelo URL correto
+                type: 'POST',
+                data: {
+                    "id": id
+                },
+                success: function (response) {
+                    response = JSON.parse(response)
+                    if (response.status == "success") {
+                        showToast("success", response.message)
+                    }
+                    else {
+                        showToast("error", response.message)
+                    }
+                    mostrarArquivados()
+                    
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        })
+
+    }
+    function mostrarArquivados() {
+
+        $(document).on("click", ".mostrar-arquivados", () => {
+            document.querySelector(".spinner").style.display = "block"
+            Helpers.ajax({
+                method: 'GET',
+                url: `${base_url}/views/admins/imoves-arquivados-list.php`,
+                dataType: 'html',
+
+                beforeSend: function (xhr) {
+                },
+                success: function (data) {
+                    document.querySelector(".spinner").style.display = "none"
+                    Dom.setHtml(".imoveis", data)
+
+
+                },
+                error: function (error) { }
+            })
+        });
+    }
+    function apagarImovel() {
+        $(document).on("click", ".apagar", (e) => {
+
+            let id = e.target.dataset.id;
+            $.ajax({
+                url: `${base_url}/apagar/imovel`, // Substitua pelo URL correto
+                type: 'POST',
+                data: {
+                    "id": id
+                },
+                success: function (response) {
+                    response = JSON.parse(response)
+                    if (response.status == "success") {
+                     
+                        showToast(type = "success", message = response.message)
+                    }
+                    else {
+                        showToast("error", message = response.message)
+                    }
+                    LoadImoveisTable()
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        })
+    }
     main();
+    arquivarImovel()
+    desarquivarImovel()
+    mostrarArquivados()
+    apagarImovel()
     sendImovelCadastroForm()
     hideOverlay()
 });

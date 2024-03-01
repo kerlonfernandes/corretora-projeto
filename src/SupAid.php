@@ -54,6 +54,9 @@ class SupAid
     }
 
     function createSlug($username) {
+ 
+        $username = $this->removeAccents($username);
+    
         $cleaned = preg_replace('/[^a-zA-Z0-9]+/', '-', $username);
     
         $lowercase = strtolower($cleaned);
@@ -65,6 +68,16 @@ class SupAid
         return $slug;
     }
     
+    function removeAccents($str) {
+        $str = mb_strtolower($str, 'UTF-8');
+        $str = str_replace(
+            ['á', 'à', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'é', 'è', 'ê', 'ë', 'í', 'ì', 'î', 'ï', 'ñ', 'ó', 'ò', 'ô', 'õ', 'ö', 'ø', 'ú', 'ù', 'û', 'ü'],
+            ['a', 'a', 'a', 'a', 'a', 'a', 'ae', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u'],
+            $str
+        );
+        $str = preg_replace('/[^a-z0-9\-]+/', '-', $str);
+        return $str;
+    }
 
     public function sanitizeInput($input)
     {

@@ -1,6 +1,6 @@
 
-const admin_base_url = `../${base_url}/admin`
-
+// const admin_base_url = `../${base_url}/admin`
+const admin_base_url = `https://0832-45-7-167-152.ngrok-free.app/projeto-corretora/admin`
 document.addEventListener('DOMContentLoaded', function () {
     let successMessageElement = document.getElementById("success-message");
 
@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 "email": Dom.sel("#user").value,
                 "password": Dom.sel("#password").value
             }
-            console.log(data)
-
+            
             var errorMessageElement = Dom.sel("#error-message");
 
             if (user.value === "" || password.value === "") {

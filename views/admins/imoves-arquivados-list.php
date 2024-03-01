@@ -8,7 +8,7 @@ require "../../models/Database.php";
 
 $database = new Database(MYSQL_CONFIG);
 
-$result = $database->execute_query("SELECT * FROM imoveis WHERE id_admin = :id_admin AND is_archived = 0 ORDER BY id DESC", [
+$result = $database->execute_query("SELECT * FROM imoveis WHERE id_admin = :id_admin AND is_archived = 1 ORDER BY id DESC", [
     ":id_admin" => $_SESSION["id_admin"],
 ]);
 ?>
@@ -16,7 +16,7 @@ $result = $database->execute_query("SELECT * FROM imoveis WHERE id_admin = :id_a
 <?php if ($result->affected_rows > 0) : ?>
 
     <?php foreach ($result->results as $imovel) : ?>
-        <?php if($imovel->is_archived != 1): ?>
+        <?php if($imovel->is_archived != 0): ?>
         <tr>
             <td scope="row">
 
@@ -28,7 +28,7 @@ $result = $database->execute_query("SELECT * FROM imoveis WHERE id_admin = :id_a
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Editar</a>
-                            <a class="dropdown-item arquivar" data-id="<?= $imovel->id ?>"  href="#"><i class="fa-solid fa-box-archive"></i> Arquivar</a>
+                            <a class="dropdown-item desarquivar" data-id="<?= $imovel->id ?>"  href="#"><i class="fa-solid fa-box-archive"></i> Desarquivar</a>
                             <a class="dropdown-item apagar" data-id="<?= $imovel->id ?>" href="#"><i class="fa-solid fa-trash"></i> Apagar</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?= SITE ?>/imovel/<?= $imovel->imovel_slug ?>" href="#"><i class="fa-solid fa-eye"></i> Vizualizar</a>
