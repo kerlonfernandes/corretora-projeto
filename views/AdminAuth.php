@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= $title ?></title>
-    <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="<?= SITE ?>/public/assets/bootstrap.min.css">
     <link rel="stylesheet" href="<?= SITE ?>/public/css/admin/admin.css">
 

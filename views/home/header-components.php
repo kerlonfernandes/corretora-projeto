@@ -1,27 +1,27 @@
-<div class="card mt-3">
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<div class="d-flex justify-content-center">
+    <form class="d-flex filtro flex-column flex-md-row text-center" id="filtro" role="search">
+        <div class="input-group">
+            <input class="form-control me-2 mb-2 imovel-nome"  type="search" placeholder="Pesquisar pelo imóvel" name="imovel_name" aria-label="Search">
+        
+            <div class="btn-group d-flex flex-wrap" role="group" aria-label="Search Categories">
+                    <div class="mb-2">
+                <button class="btn btn-outline-danger" style="border-radius: 1px;" id="clean-filter" type="button">Limpar Filtro</button>
+            </div>
+                <input type="radio" class="btn-check" name="category" id="alugar" value="Aluguel" autocomplete="off" style="border-radius: 1px">
+                <label class="btn btn-outline-secondary mb-2" for="alugar">Alugar</label>
 
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
- 
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+                <input type="radio" class="btn-check" name="category" id="temporada" value="Temporada" autocomplete="off">
+                <label class="btn btn-outline-secondary mb-2" for="temporada">Temporada</label>
+
+                <input type="radio" class="btn-check" name="category" id="diaria" value="Diária" autocomplete="off">
+                <label class="btn btn-outline-secondary mb-2" for="diaria">Diária</label>
+
+                <input type="radio" class="btn-check" name="category" id="comprar" value="Venda" autocomplete="off">
+                <label class="btn btn-outline-secondary mb-2" for="comprar">Comprar</label>
+            </div>
+        </div>
+        <div class="mb-2">
+            <button class="btn btn-outline-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </form>
 </div>

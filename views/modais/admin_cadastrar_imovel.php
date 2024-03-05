@@ -61,7 +61,15 @@
                     <div class="mb-3">
                         <label for="imovel-price" class="col-form-label">Preço do Imóvel:</label>
                         <input type="text" class="form-control" id="imovel-price" name="price" pattern="[0-9]+(\.[0-9]+)?" title="Apenas números são permitidos" require="">
-
+                        <div class="mb-3 mt-3">
+                        <select id="imovel-finalidade" class="form-select">
+                            <option value="" selected>Selecione para qual finalidade o imóvel será</option>
+                            <option value="Aluguel">Aluguel</option>
+                            <option value="Venda">Venda</option>
+                            <option value="Temporada">Temporada</option>
+                            <option value="Diária">Diária</option>    
+                        </select>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="cidadeInput" class="form-label">Digite o nome da cidade:</label>

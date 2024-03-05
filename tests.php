@@ -12,3 +12,7 @@ echo 'URL Codificada: ' . $url_codificada . '<br>';
 // Exemplo de uso do método decodeURL
 $url_decodificada = $h->decodeURL($url_codificada);
 echo ' ' . $url_decodificada . '<br>';
+
+
+?>
+

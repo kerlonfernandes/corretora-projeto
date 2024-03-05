@@ -27,9 +27,9 @@ $result = $database->execute_query("SELECT * FROM imoveis WHERE id_admin = :id_a
                         <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Editar</a>
-                            <a class="dropdown-item arquivar" data-id="<?= $imovel->id ?>"  href="#"><i class="fa-solid fa-box-archive"></i> Arquivar</a>
-                            <a class="dropdown-item apagar" data-id="<?= $imovel->id ?>" href="#"><i class="fa-solid fa-trash"></i> Apagar</a>
+                            <a class="dropdown-item editar" href="<?= SITE ?>/imovel/<?= $imovel->imovel_slug ?>?action=editar"><i class="fa-solid fa-pen"></i> Editar</a>
+                            <a class="dropdown-item arquivar" data-id="<?= $imovel->id ?>"><i class="fa-solid fa-box-archive"></i> Arquivar</a>
+                            <a class="dropdown-item apagar" data-id="<?= $imovel->id ?>"><i class="fa-solid fa-trash"></i> Apagar</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?= SITE ?>/imovel/<?= $imovel->imovel_slug ?>" href="#"><i class="fa-solid fa-eye"></i> Vizualizar</a>
 

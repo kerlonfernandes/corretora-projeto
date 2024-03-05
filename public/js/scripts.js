@@ -1,6 +1,9 @@
 //urls configs
 // const base_url = "../projeto-corretora"
-const base_url = "https://0832-45-7-167-152.ngrok-free.app/projeto-corretora"
+const base_url = `https://3b81-45-7-167-152.ngrok-free.app/projeto-corretora`
+const admin_base_url = `${base_url}/admin`
+
+// const base_url = "https://0832-45-7-167-152.ngrok-free.app/projeto-corretora"
 
 // https://0832-45-7-167-152.ngrok-free.app/projeto-corretora/
 

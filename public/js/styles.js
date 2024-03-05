@@ -10,7 +10,7 @@
 //     });
 // }
 
-function showToast(type="success", message="") {
+function showToast(type="success", message="", duration=3000) {
     let bodyPage = document.body;
 
     let toastContainer = document.createElement("div");
@@ -19,7 +19,7 @@ function showToast(type="success", message="") {
     let toastHTML = '';
     if (type === "error") {
         toastHTML = `
-            <div class="toast bg-danger" role="alert" aria-live="assertive" aria-atomic="true" style="color:white;">
+            <div class="toast bg-danger" role="alert" aria-live="assertive" aria-atomic="true" style="color:white;" data-delay="${duration}">
                 <div class="toast-body">
                     <div class="d-flex gap-4">
                         <span><i class="fa-solid fa-circle-xmark fa-lg icon-error"></i></span>
@@ -36,7 +36,7 @@ function showToast(type="success", message="") {
         `;
     } else if (type === "success") {
         toastHTML = `
-            <div class="toast bg-success" role="alert" aria-live="assertive" aria-atomic="true" style="color:white;">
+            <div class="toast bg-success" role="alert" aria-live="assertive" aria-atomic="true" style="color:white;" data-delay="${duration}">
                 <div class="toast-body">
                     <div class="d-flex gap-4">
                         <span><i class="fa-solid fa-circle-check fa-lg icon-success"></i></span>

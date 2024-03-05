@@ -33,22 +33,28 @@ class itemsController extends RenderView
     }
     public function imovel($id)
     {
+    
+        
 
 
         $query = new Database(MYSQL_CONFIG);
 
         $result = $query->execute_query(
-            "SELECT * FROM imoveis WHERE imovel_slug = :imovel_slug",
+            "SELECT admins.*, imoveis.* FROM imoveis INNER JOIN admins ON admins.id = imoveis.id_admin WHERE imovel_slug = :imovel_slug",
             [":imovel_slug" => $id[0]]
         );
+        
         if ($result->affected_rows > 0) {
             $this->loadView("ImovelView", [
                 "title" => $result->results[0]->imovel_name,
+                "imovel" => $result->results[0],
             ]);
         }
-
-
-        print_r($result);
+        else {
+            $this->loadView("notFoundImovel", [
+             "title" => $id[0]
+            ]);
+        }
     }
     public function cadastra_imovel()
     {
@@ -67,9 +73,10 @@ class itemsController extends RenderView
                 $imovel_slug = $Helpers->createSlug($imovel_name);
                 $database = new Database(MYSQL_CONFIG);
 
-                $result = $database->execute_non_query("INSERT INTO `imoveis` (`id_admin`, `imovel_name`, `proprietario`, `imovel_slug`, `short_description`, `imovel_description`, `imovel_locality`, `price`, `registration_time`, `registration_date`, `last_update`) VALUES (:id_admin, :imovel_name, :proprietario, :imovel_slug, :short_description, :imovel_description, :imovel_locality, :price, :registration_time, :registration_date, :last_update)", [
+                $result = $database->execute_non_query("INSERT INTO `imoveis` (`id_admin`, `imovel_name`, `category`, `proprietario`, `imovel_slug`, `short_description`, `imovel_description`, `imovel_locality`, `price`, `registration_time`, `registration_date`, `last_update`) VALUES (:id_admin, :imovel_name, :category, :proprietario, :imovel_slug, :short_description, :imovel_description, :imovel_locality, :price, :registration_time, :registration_date, :last_update)", [
                     ":id_admin" => $_SESSION['id_admin'],
                     ":imovel_name" => rtrim($imovel_name),
+                    ":category" => $_POST['category'],
                     ":proprietario" => $proprietario,
                     ":imovel_slug" => $imovel_slug,
                     ":short_description" => $short_description,
@@ -146,7 +153,6 @@ class itemsController extends RenderView
                     $nome_original = $_FILES['imagens']['name'][$i];
                     $extensao = pathinfo($nome_original, PATHINFO_EXTENSION);
 
-                    // Gerar um nome de arquivo único usando timestamp e hash único
                     $nome_unico = time() . '_' . uniqid('', true) . '.' . $extensao;
 
                     $caminho_temporario = $_FILES['imagens']['tmp_name'][$i];
@@ -154,7 +160,6 @@ class itemsController extends RenderView
                     $images[] = $nome_unico;
                     move_uploaded_file($caminho_temporario, $caminho_destino);
 
-                    // Você pode usar $nome_unico como o nome único para esta imagem no seu banco de dados ou em qualquer lugar necessário
                 }
                 if (count($images) > 0) {
                     $db = new Database(MYSQL_CONFIG);
@@ -169,7 +174,7 @@ class itemsController extends RenderView
                 $response['status_code'] = 200;
             } else {
                 $response['status'] = 'error';
-                $response['message'] = 'Ocorreu um erro ao processar imagens enviadas';
+                $response['message'] = 'Nenhuma imagem foi enviada';
                 $response['error'] = true;
                 $response['status_code'] = 1005;
             }

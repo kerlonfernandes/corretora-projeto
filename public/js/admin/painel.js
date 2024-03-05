@@ -147,7 +147,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             elemento.value = valor;
-        });
+        })
+
 
 
     }
@@ -159,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let proprietario = $("#proprietario").val();
             let titulo_imovel = $("#titulo-imovel").val();
             // let images_name = $('[name="imagens[]"]').val();
+            let finalidade = $("#imovel-finalidade").val();
             let descricao_curta = $("#descricao-curta").val();
             let descricao = quill.root.innerHTML;
             let price = $("#imovel-price").val();
@@ -177,9 +179,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 "imovel_description": descricao,
                 "imovel_locality": localizacao,
                 "price": price,
+                "category": finalidade,
                 "short_description": descricao_curta,
                 "proprietario": proprietario
             }
+            console.log(data)
             // $(".formulario-imovel-cadastro")[0].reset();
             // quill.root.innerHTML = ""
 
@@ -200,10 +204,10 @@ document.addEventListener('DOMContentLoaded', function () {
                             success: function (response) {
                                 response = JSON.parse(response)
                                 if (response.status == "success") {
-                                    showToast("success", response.message)
+                                    showToast("success", response.message, duration=1500)
                                 }
                                 else {
-                                    showToast("error", response.message)
+                                    showToast("error", response.message, duration=1500)
                                 }
                                 LoadImoveisTable()
                             },
