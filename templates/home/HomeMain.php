@@ -1,4 +1,4 @@
-<div class="d-flex mt-5"><img src="<?= SITE ?>/public/images/banner.jpeg" style="width: 100%;" class="img-fluid" alt="..."></div>
+<div class="d-flex "><img src="<?= SITE ?>/public/images/banner.jpeg" style="width: 100%;" class="img-fluid" alt="..."></div>
 
 
 

@@ -41,10 +41,10 @@ if (isset($_GET['category'])) {
 
 $whereClause = '';
 if (!empty($conditions)) {
-    $whereClause = ' WHERE ' . implode(' AND ', $conditions) . ' AND is_archived != 1';
+    $whereClause = ' WHERE ' . implode(' AND ', $conditions);
 }
 
-$sql = "SELECT * FROM imoveis" . $whereClause . " LIMIT $startIndex, $itemsPerPage";
+$sql = "SELECT * FROM imoveis" . $whereClause . ($whereClause ? " AND " : " WHERE ") . "is_archived = 0 LIMIT $startIndex, $itemsPerPage";
 
 $result = $query->execute_query($sql, $parameters);
 

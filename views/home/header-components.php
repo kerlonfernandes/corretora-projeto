@@ -1,5 +1,5 @@
-<div class="d-flex justify-content-center">
-    <form class="d-flex filtro flex-column flex-md-row text-center" id="filtro" role="search">
+<div class="d-flex justify-content-center" ">
+    <form class="d-flex filtro flex-column flex-md-row text-center" id="filtro" role="search" >
         <div class="input-group">
             <input class="form-control me-2 mb-2 imovel-nome" type="search" placeholder="Pesquisar pelo imóvel" name="imovel_name" aria-label="Search">
 
@@ -19,9 +19,10 @@
                 <div class="mb-2">
                     <button class="btn btn-outline-danger" style="border-radius: 1px;" id="clean-filter" type="button">Limpar Filtro</button>
                 </div>
-                
             </div>
         </div>
-        
+        <div class="mb-2">
+            <button class="btn btn-outline-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
     </form>
 </div>
