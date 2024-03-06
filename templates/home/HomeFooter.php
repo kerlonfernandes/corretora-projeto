@@ -6,4 +6,3 @@
             <img src="<?= SITE ?>/public/images/logo.png" width="48px" alt="">
     </footer>
 </div>
-

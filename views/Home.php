@@ -30,8 +30,6 @@
         <?php
         require_once("./templates/home/HomeFooter.php") 
         ?>
-
-   
     <script src="<?= SITE ?>/public/js/jquery.min.js?id=<?= uniqid() ?>"></script>
     <script src="<?= SITE ?>/public/js/bootstrap.bundle.min.js.js?id=<?= uniqid() ?>"></script>
     <script src="<?= SITE ?>/public/js/scripts.js?id=<?= uniqid() ?>"></script>
